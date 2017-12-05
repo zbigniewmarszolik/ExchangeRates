@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ExchangeRates/packages
+/ExchangeRates/ExchangeRates.WinRT/ExchangeRates.WinRT.Windows/bin
+/ExchangeRates/ExchangeRates.WinRT/ExchangeRates.WinRT.Windows/obj
+/ExchangeRates/ExchangeRates.WinRT/ExchangeRates.WinRT.WindowsPhone/bin
+/ExchangeRates/ExchangeRates.WinRT/ExchangeRates.WinRT.WindowsPhone/obj

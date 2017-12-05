@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -15,5 +15,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ApplicationModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Facades\InitializationFacade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\CurrencyEntityFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\CurrencyFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CurrencyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CurrencyPage.xaml.cs">
+      <DependentUpon>CurrencyPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\CurrencyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

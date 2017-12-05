@@ -1,42 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Autofac;
+using ExchangeRates.Binder.Modules;
+using ExchangeRates.WinRT.ViewModels;
+using ExchangeRates.WinRT.Views;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
-
 namespace ExchangeRates.WinRT
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     public sealed partial class App : Application
     {
+        private IContainer _container { get; set; }
+
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
 
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+            ConfigureContainer();
         }
 
         /// <summary>
@@ -95,7 +84,10 @@ namespace ExchangeRates.WinRT
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+
+                var viewModel = _container.Resolve<CurrencyViewModel>();
+
+                if (!rootFrame.Navigate(typeof(CurrencyPage), viewModel))
                 {
                     throw new Exception("Failed to create initial page");
                 }
@@ -132,6 +124,17 @@ namespace ExchangeRates.WinRT
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void ConfigureContainer()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<InfrastructureModule>();
+            builder.RegisterModule<ServicesModule>();
+
+            _container = builder.Build();
         }
     }
 }
