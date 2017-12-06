@@ -2,7 +2,7 @@
 using ExchangeRates.Domain.Models;
 using System.Collections.Generic;
 
-namespace ExchangeRates.WinRT.Factories
+namespace ExchangeRates.UI.Factories
 {
     public class CurrencyFactory
     {
@@ -18,7 +18,7 @@ namespace ExchangeRates.WinRT.Factories
             foreach (var item in currencyEntity.Rates)
                 instance.Rates.Add(item.CurrencyName, item.CurrencyRate);
 
-            return null;
+            return instance;
         }
     }
 }

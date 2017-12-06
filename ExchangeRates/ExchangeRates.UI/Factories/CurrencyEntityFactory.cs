@@ -1,8 +1,9 @@
 ﻿using ExchangeRates.Domain.Entities;
 using ExchangeRates.Domain.Models;
+using System;
 using System.Collections.Generic;
 
-namespace ExchangeRates.WinRT.Factories
+namespace ExchangeRates.UI.Factories
 {
     public class CurrencyEntityFactory
     {
@@ -12,10 +13,11 @@ namespace ExchangeRates.WinRT.Factories
             {
                 Base = currency.Base,
                 Date = currency.Date,
-                Rates = new List<RateEntity>()
+                Rates = new List<RateEntity>(),
+                LocalSavedDate = DateTime.Now
             };
 
-            foreach(var item in currency.Rates)
+            foreach (var item in currency.Rates)
             {
                 var rate = new RateEntity
                 {

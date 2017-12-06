@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using ExchangeRates.Binder.Modules;
-using ExchangeRates.WinRT.ViewModels;
+using ExchangeRates.UI.ViewModels;
 using ExchangeRates.WinRT.Views;
 using System;
 using Windows.ApplicationModel;
@@ -95,6 +95,10 @@ namespace ExchangeRates.WinRT
 
             // Ensure the current window is active
             Window.Current.Activate();
+#if WINDOWS_APP
+            new Settings.About().Setup();
+            new Settings.Contribution().Setup();
+#endif
         }
 
 #if WINDOWS_PHONE_APP
@@ -130,9 +134,9 @@ namespace ExchangeRates.WinRT
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<InfrastructureModule>();
             builder.RegisterModule<ServicesModule>();
+            builder.RegisterModule<UserInterfaceModule>();
 
             _container = builder.Build();
         }

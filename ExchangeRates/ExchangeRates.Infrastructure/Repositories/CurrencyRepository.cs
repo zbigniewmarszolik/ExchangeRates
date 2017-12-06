@@ -22,25 +22,26 @@ namespace ExchangeRates.Infrastructure.Repositories
         {
             try
             {
-                _connection.InsertWithChildren(currencyEntity);
+                _connection.InsertOrReplaceWithChildren(currencyEntity);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-
+                throw e;
             }
         }
 
         public IList<CurrencyEntity> ReadData()
         {
-            IList<CurrencyEntity> currencies = null;
+            IList<CurrencyEntity> currencies;
 
             try
             {
                 currencies = _connection.GetAllWithChildren<CurrencyEntity>().ToList();
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-
+                currencies = null;
+                throw e;
             }
 
             return currencies;

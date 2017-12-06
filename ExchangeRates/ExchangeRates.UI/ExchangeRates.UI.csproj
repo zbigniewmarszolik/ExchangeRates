@@ -2,18 +2,18 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{26A0B423-A6B2-4128-9A03-8BB799A3B14C}</ProjectGuid>
+    <ProjectGuid>{BD3DC2F7-E584-432F-B345-3542BB8E488A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExchangeRates.Binder</RootNamespace>
-    <AssemblyName>ExchangeRates.Binder</AssemblyName>
+    <RootNamespace>ExchangeRates.UI</RootNamespace>
+    <AssemblyName>ExchangeRates.UI</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile151</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,42 +34,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <TargetPlatform Include="Windows, Version=8.1" />
-    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Modules\InfrastructureModule.cs" />
-    <Compile Include="Modules\ServicesModule.cs" />
-    <Compile Include="Modules\UserInterfaceModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
     <ProjectReference Include="..\ExchangeRates.Domain\ExchangeRates.Domain.csproj">
       <Project>{d9c9ffe9-bff2-476b-b0bb-e52511c5c0ab}</Project>
       <Name>ExchangeRates.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExchangeRates.Infrastructure\ExchangeRates.Infrastructure.csproj">
-      <Project>{5bdc2cdf-c037-47a0-b237-5a2b73aeae79}</Project>
-      <Name>ExchangeRates.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExchangeRates.Services\ExchangeRates.Services.csproj">
-      <Project>{01bf7ab9-61c7-4b9e-952d-cd664010ab87}</Project>
-      <Name>ExchangeRates.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExchangeRates.UI\ExchangeRates.UI.csproj">
-      <Project>{bd3dc2f7-e584-432f-b345-3542bb8e488a}</Project>
-      <Name>ExchangeRates.UI</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\EDataType.cs" />
+    <Compile Include="Facades\IInitializationFacade.cs" />
+    <Compile Include="Facades\InitializationFacade.cs" />
+    <Compile Include="Factories\CurrencyEntityFactory.cs" />
+    <Compile Include="Factories\CurrencyFactory.cs" />
+    <Compile Include="Factories\DataStrategyFactory.cs" />
+    <Compile Include="Helpers\CurrencyDescriptionHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategies\HttpDataStrategy.cs" />
+    <Compile Include="Strategies\IDataStrategy.cs" />
+    <Compile Include="Strategies\SqlDataStrategy.cs" />
+    <Compile Include="ViewModels\CurrencyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.3.5.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\portable-windows8+wpa81+net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\portable-windows8+wpa81+net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

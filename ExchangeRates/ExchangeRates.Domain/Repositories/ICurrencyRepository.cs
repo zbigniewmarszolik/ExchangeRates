@@ -1,4 +1,5 @@
 ﻿using ExchangeRates.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace ExchangeRates.Domain.Repositories

@@ -15,11 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationModule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Facades\InitializationFacade.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\CurrencyEntityFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\CurrencyFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CurrencyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CurrencyPage.xaml.cs">
       <DependentUpon>CurrencyPage.xaml</DependentUpon>
     </Compile>

@@ -8,7 +8,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExchangeRates.WinRT</RootNamespace>
-    <AssemblyName>ExchangeRates.WinRT.WindowsPhone</AssemblyName>
+    <AssemblyName>Exchange rates</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
@@ -88,6 +88,10 @@
     <ProjectReference Include="..\..\ExchangeRates.Domain\ExchangeRates.Domain.csproj">
       <Project>{d9c9ffe9-bff2-476b-b0bb-e52511c5c0ab}</Project>
       <Name>ExchangeRates.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ExchangeRates.UI\ExchangeRates.UI.csproj">
+      <Project>{bd3dc2f7-e584-432f-b345-3542bb8e488a}</Project>
+      <Name>ExchangeRates.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

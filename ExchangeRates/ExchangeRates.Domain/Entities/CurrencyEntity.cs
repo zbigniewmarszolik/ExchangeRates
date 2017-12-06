@@ -14,6 +14,7 @@ namespace ExchangeRates.Domain.Entities
 
         public string Base { get; set; }
         public DateTime Date { get; set; }
+        public DateTime LocalSavedDate { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeInsert)]
         public List<RateEntity> Rates { get; set; }

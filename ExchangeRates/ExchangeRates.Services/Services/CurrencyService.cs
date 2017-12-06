@@ -17,7 +17,7 @@ namespace ExchangeRates.Services.Services
             _client = httpClientFactory.Get();
         }
 
-        public async Task<Currency> GetLatestRates()
+        public async Task<Currency> GetLatestRatesAsync()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace ExchangeRates.Services.Services
             }
             catch (Exception e)
             {
-                //ConnectionErrorAction("Error connecting to the server for reading available tasks.");
+                throw e;
             }
 
             return null;
