@@ -51,18 +51,19 @@ namespace ExchangeRates.Tests.UI.ViewModelsTests
         [TestMethod]
         public void GetSetSelectedRate_ExistingInput_ReturningProperDescriptionAndGettingRate()
         {
+            // Arrange
             var rate = new Rate
             {
                 CurrencyRate = new decimal(9.15),
                 CurrencyName = "CZK"
             };
-
             _testingViewModel.SelectedRate = rate;
 
+            // Act
             var result = _testingViewModel.Description;
-
             var selectedRate = _testingViewModel.SelectedRate;
 
+            // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual("Czech koruna", result);
             Assert.IsInstanceOfType(result, typeof(string));
@@ -72,10 +73,13 @@ namespace ExchangeRates.Tests.UI.ViewModelsTests
         [TestMethod]
         public void SetSelectedRate_NullInput_ClearingDescription()
         {
+            // Arrange
             _testingViewModel.SelectedRate = null;
 
+            // Act
             var result = _testingViewModel.Description;
 
+            // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual("", result);
         }
@@ -83,59 +87,19 @@ namespace ExchangeRates.Tests.UI.ViewModelsTests
         [TestMethod]
         public void SetSelectedRate_WrongInput_ReturningDefaultNull()
         {
+            // Arrange
             var rate = new Rate
             {
                 CurrencyRate = new decimal(9.15),
                 CurrencyName = "wrong"
             };
-
             _testingViewModel.SelectedRate = rate;
 
+            // Act
             var result = _testingViewModel.Description;
 
+            // Assert
             Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void GetSetIsDataLoading_ChangingProperty_ActingProperly()
-        {
-            Assert.IsFalse(_testingViewModel.IsDataLoading);
-
-            _testingViewModel.IsDataLoading = true;
-
-            Assert.IsTrue(_testingViewModel.IsDataLoading);
-
-            _testingViewModel.IsDataLoading = false;
-
-            Assert.IsFalse(_testingViewModel.IsDataLoading);
-        }
-
-        [TestMethod]
-        public void GetSetCentralDate_ChangingProperty_ActingProperly()
-        {
-            var date = DateTime.Now;
-
-            _testingViewModel.CentralDate = "";
-
-            Assert.AreNotEqual(date.ToString(), _testingViewModel.CentralDate);
-
-            _testingViewModel.CentralDate = date.ToString();
-
-            Assert.AreEqual(date.ToString(), _testingViewModel.CentralDate);
-        }
-
-        [TestMethod]
-        public void GetSetDescription_ChangingProperty_ActingProperly()
-        {
-            var description = "random description";
-
-            _testingViewModel.CentralDate = "";
-
-            Assert.AreNotEqual(description, _testingViewModel.Description);
-
-            _testingViewModel.Description = description;
-
-            Assert.AreEqual(description, _testingViewModel.Description);
         }
     }
 }
